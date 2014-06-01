@@ -1,0 +1,40 @@
+Ordre d'idée :
+R=132mm
+
+ V_U_Max=1.5m/s
+  V_T_Max=11.3 rad/s
+
+ Acc_Umax=2m/s²
+ Acc_Tmax=0.38*10^4 rad/s² // un peux grand !!! 
+
+
+
+Passer en unité normalisé : m/s rad/s m/s² et rad/s²
+
+Répercution dans le code :
+	
+Odométrie.c // Voir indication commenté
+
+	Lecture_trapez.c //uniquement la descélération : le coeff 7
+
+	Calcule_distance.c //uniquement les conditions d'arrêt
+
+	detectBugBloquage.c //Tous les seuil de bloquage + rayon
+	Main.c	:
+	
+	argument de fct à changer :
+
+		calculTrapez();
+
+		fctPI(); + son coeff
+
+		Calcule_ralentissement();
+
+
+
+Detection blocage > envoi info par I2C
+mettre à jour le position par I2C
+
+
+
+Problème : tourne pas de manière optimisé
