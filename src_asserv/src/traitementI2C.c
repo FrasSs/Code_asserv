@@ -37,7 +37,20 @@ unsigned int  seuil_blockage=0;
 
 void i2cCallBack(uint8_t cmd, uint8_t dataRx[], uint8_t size)
 {
+	static int led=0;
+	
 	traitementI2C(--dataRx, ++size);
+	
+	if (led)
+	{
+		leds_off(LED2);
+	} 
+	else
+	{
+		leds_on(LED2);
+	}
+	
+	
 }
 
 void traitementI2C(unsigned char * msg,unsigned char size)

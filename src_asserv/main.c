@@ -103,7 +103,14 @@ int main(void)
 //////////////////////////////////////////////////////////////////////////
 	init();
 	
-	/*
+
+#if TEST_CODEUSES
+	int tot_codeur_G = 0;
+	int tot_codeur_D = 0;
+	
+	int tot_codeur_G_2 = 0;
+	int tot_codeur_D_2 = 0;
+		/*
 	Ordre1.Type = AVANCE;
 	Ordre1.X = 0.0;
 	Ordre1.Y = 600.0;
@@ -126,13 +133,6 @@ int main(void)
 	
 	new_etat=4;
 		*/
-#if TEST_CODEUSES
-	int tot_codeur_G = 0;
-	int tot_codeur_D = 0;
-	
-	int tot_codeur_G_2 = 0;
-	int tot_codeur_D_2 = 0;
-	
 	
 //Carré pour test AVANCE /////////////////////////////////////////////////
 
@@ -186,6 +186,8 @@ int main(void)
 //////////////////////////////////////////////////////////////////////////
 	while(1)
 	{
+		leds_on(LED1);
+		
 		if(goAsserv)
 		{
 			Init_codeurs(&codeur_d,&codeur_g); // initialisation codeuses
@@ -194,6 +196,8 @@ int main(void)
 			
 			if (I2CNewOrderFlag) 
 			{
+				static int led=0;
+				
 				new_etat=(new_etat <(STACK_SIZE-1))? new_etat++:0;
 								
 				nb_ordre_save(); // mettre à jour le nombre d'ordre reçu (3 maxi) retour sur variable : nb_ordre
@@ -205,6 +209,16 @@ int main(void)
 				Tab_ordre[new_etat]->Y = (double)I2CNewOrder.Y/* / 10.0*/;
 				Tab_ordre[new_etat]->Theta = (double)I2CNewOrder.Theta/* / 10000.0*/;
 				//////////////////////////////////////////////////////////////////////////
+				
+				
+				if (led)
+				{
+					leds_off(LED3);
+				}
+				else
+				{
+					leds_on(LED3);
+				}
 								
 				I2CNewOrderFlag = 0;
 			}
