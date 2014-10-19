@@ -20,6 +20,7 @@
 extern uint8_t I2CNewOrderFlag;
 //extern uint8_t I2CNewOrderAkwnoledged;
 Commande I2CNewOrder;
+i2c_packet i2c_envoie;
 
 extern int Com_i2c;
 
