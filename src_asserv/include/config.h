@@ -93,9 +93,16 @@
 #define POSITION_R      7
 #define BLOQUE          8
 #define AVANCE_TOURNE   9
-#define STATUS_ROB	10
+#define STATUS_ROB		10
 
 #define ORDRE_RECU_MAIS_PAS_ENCORE_TRAITE	20 //pour i2c
+
+// PILE /////////////////////////////////////////////////////////////////
+
+#define STACK_SIZE 4 // taille de la pile utilisé
+
+//////////////////////////////////////////////////////////////////////////
+
 
 
 int init(void);

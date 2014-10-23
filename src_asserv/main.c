@@ -43,7 +43,6 @@ double distance_U = 0.0;	// Vitesse Réelle = vitesse_U*10 (donne des m/s) car vi
 //////////////////////////////////////////////////////////////////////////
 // Ordres ////////////////////////////////////////////////////////////////
 
-#define STACK_SIZE 4 // taille de la pile utilisé
 Commande Ordre1={STOP_F,0,0,0};
 Commande Ordre2={STOP_F,0,0,0};
 Commande Ordre3={STOP_F,0,0,0};

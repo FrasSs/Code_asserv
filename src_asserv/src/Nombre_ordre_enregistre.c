@@ -7,7 +7,7 @@
  */ 
 
 #include <stdint.h>
-#include "../include/struct_Commande.h"
+#include "../include/Nombre_ordre_enregistre.h"
 extern int new_etat;
 extern uint8_t etat;
 extern int nb_ordre;
@@ -15,15 +15,26 @@ extern Commande * Tab_ordre[];
 
 void nb_ordre_save(void)
 {
-
-	int i=0,j=etat;
-	int stack;
+	int i,j;
 	
-	for(stack=0;Tab_ordre[stack]->Type!=0;stack++); // compt stack
-	
-	for(i=0,j=etat;j!=new_etat;i++)
+	if (etat!=new_etat)
 	{
-		j=(j<stack) ? j+1 : 0;
+		for(i=0,j=etat;j!=new_etat;i++)
+		{
+			j=((j+1)<STACK_SIZE) ? j+1 : 0;
+		}
+		
+		nb_ordre = i;
 	}
-	nb_ordre = i;
+	else
+	{
+		if (nb_ordre)
+		{
+			nb_ordre=4;
+		}
+		else
+		{
+			nb_ordre=0;
+		}
+	}
 }

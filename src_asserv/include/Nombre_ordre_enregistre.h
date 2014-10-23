@@ -7,7 +7,7 @@
 
 #ifndef NB_ORDRE_H_
 #define NB_ORDRE_H_
-
+#include "config.h"
 
 	
 
