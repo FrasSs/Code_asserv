@@ -55,15 +55,15 @@ void traitementI2C(unsigned char* msg,unsigned char size);
 
 #include "config.h"
 
-int i2c_packetToEtat_courant();
-int commandeToI2c_packet();
-
 typedef struct _i2c_packet {
 	uint8_t Type;
 	uint8_t X[4];
 	uint8_t Y[4];
 	uint8_t Theta[4];
 } i2c_packet;
+
+void commandeToI2c_packet(const Commande *myCommande, i2c_packet *myI2c_packet);
+void i2c_packetToCommande(const i2c_packet *myI2c_packet, Commande *myCommande);
 
 void traitementI2C(unsigned char* msg,unsigned char size);
 #endif

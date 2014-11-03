@@ -8,7 +8,7 @@
 
 #include <stdint.h>
 #include "../include/Nombre_ordre_enregistre.h"
-extern int new_etat;
+extern uint8_t new_etat;
 extern uint8_t etat;
 extern int nb_ordre;
 extern Commande * Tab_ordre[];
