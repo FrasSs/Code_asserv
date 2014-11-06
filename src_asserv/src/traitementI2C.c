@@ -93,9 +93,11 @@ void traitementI2C(unsigned char * msg,unsigned char size)
 			// Write i2C
 
 			commandeToI2c_packet(&position, &i2c_envoie);
+			i2c_envoie.Type=Ordre_actuel.Type;
 			for (int i=0; i<13; i++) {
-				buffer_OUT[i]=*(i2c_envoie.Type+i);
+				buffer_OUT[i]=*((i2c_envoie.X-1)+i);
 			}
+			
 			i2cWrite(buffer_OUT, 13);
 			I2CNewOrderFlag = 0;
 			break;
@@ -107,6 +109,7 @@ void traitementI2C(unsigned char * msg,unsigned char size)
 				*(i2c_envoie.X+i)=msg[i+1];
 			}
 			i2c_packetToCommande(&i2c_envoie, &position);
+			I2CNewOrderFlag = 0;
 			break;
 		}
 		
@@ -168,9 +171,9 @@ void commandeToI2c_packet(const Commande *myCommande, i2c_packet *myI2c_packet) 
 
 void i2c_packetToCommande(const i2c_packet *myI2c_packet, Commande *myCommande) {
 	myCommande->Type=myI2c_packet->Type;
-	int32_t temp[3]={0};
+	int32_t temp[3]={0, 0, 0};
 	int32_t temp_mask=0;
-	double signe[3]={1};
+	double signe[3]={1, 1, 1};
 	for (int i=0; i<4; i++) {
 		temp[0]|=((uint32_t)(myI2c_packet->X[i])) << (i*8);
 		temp[1]|=((uint32_t)(myI2c_packet->Y[i])) << (i*8);

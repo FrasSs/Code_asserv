@@ -192,15 +192,10 @@ int main(void)
 		{
 			Init_codeurs(&codeur_d,&codeur_g); // initialisation codeuses
 			
-			nb_ordre_save();
-			
 			if (I2CNewOrderFlag) 
 			{
 				static int led=0;
-				
-				new_etat=(new_etat <(STACK_SIZE-1))? new_etat++:0;
 								
-				nb_ordre_save(); // mettre à jour le nombre d'ordre reçu (3 maxi) retour sur variable : nb_ordre
 				
 				//////////////////////////////////////////////////////////////////////////
 				// convertion des ordes I2C en double ////////////////////////////////////
@@ -210,6 +205,9 @@ int main(void)
 				Tab_ordre[new_etat]->Theta = (double)I2CNewOrder.Theta/* / 10000.0*/;
 				//////////////////////////////////////////////////////////////////////////
 				
+				if (new_etat<(STACK_SIZE-1)) {new_etat++;}
+				else {new_etat=0;}
+				nb_ordre_save(); // mettre à jour le nombre d'ordre reçu (3 maxi) retour sur variable : nb_ordre
 				
 				if (led)
 				{
